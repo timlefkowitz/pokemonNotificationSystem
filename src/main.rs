@@ -7,7 +7,11 @@ use reqwest::Client;
         let body = "https://www.gamestop.com/toys-games/trading-cards/products/pokemon-trading-card-game-prismatic-evolutions-binder-collection/417633.html";
         let sender_email = "blindfry@gmail.com";
         let password = "Applefor33!";
-        let recipient = "2102027013@vtext.com";
+        let recipients = vec![
+                                        "2102027013@vtext.com",
+                                         "anotherperson@example.com",
+                                        "thirdperson@example.com",
+    ];
 
         // Create email message
         let email_message = Message::builder()
@@ -20,9 +24,11 @@ use reqwest::Client;
         let creds = Credentials::new(sender_email.to_string(), password.to_string());
         let mailer = SmtpTransport::relay("smtp.gmail.com")?
             .credentials(creds)
+
+
             .build();
 
-        // Send email
+        // Send email'
         mailer.send(&email_message)?;
         println!("Notification sent!");
         Ok(())
