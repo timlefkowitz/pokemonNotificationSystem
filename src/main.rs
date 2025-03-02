@@ -3,9 +3,31 @@ use lettre::{Message, SmtpTransport, Transport};
 use reqwest::Client;
 #[tokio::main]
     async fn main() -> Result<(), Box<dyn std::error::Error>> {
-        // Replace these with your details
-        let body = "https://www.gamestop.com/toys-games/trading-cards/products/pokemon-trading-card-game-prismatic-evolutions-binder-collection/417633.html";
-        let sender_email = "blindfry@gmail.com";
+        // multiable links
+    let product_links = vec![
+        "https://www.gamestop.com/toys-games/trading-cards/products/pokemon-trading-card-game-prismatic-evolutions-binder-collection/417633.html",
+        "https://www.gamestop.com/toys-games/trading-cards/products/another-pokemon-product/123456.html",
+        "https://www.gamestop.com/toys-games/trading-cards/products/yet-another-pokemon-item/789101.html",
+    ];
+
+    let sender_email = "blindfry@gmail.com";
+    let password = "Applefor33!";
+    let recipients = vec![
+        "2102027013@vtext.com",
+        "anotherperson@example.com",
+        "thirdperson@example.com",
+    ];
+
+
+    // Construct message with all links
+    let body = product_links.join("\n");
+
+    // Iterate over recipients and send the message
+    for recipient in &recipients {
+        // Your email sending function here
+        println!("Sending to: {}\nMessage:\n{}", recipient, body);
+    }
+    let sender_email = "blindfry@gmail.com";
         let password = "Applefor33!";
         let recipients = vec![
                                         "2102027013@vtext.com",
